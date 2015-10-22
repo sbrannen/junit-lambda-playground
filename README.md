@@ -1,1 +1,1 @@
-# junit-lambda
+# Prototype for JUnit Lambda / JUnit 5
