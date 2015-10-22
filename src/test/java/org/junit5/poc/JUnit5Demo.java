@@ -20,6 +20,7 @@ public class JUnit5Demo {
 				}})
 				.packageNames("org.junit5.poc")
 				.include("*Tests")
+				// TODO from TestDescriptor ID
 				.build();
 
 		testRun.start();
