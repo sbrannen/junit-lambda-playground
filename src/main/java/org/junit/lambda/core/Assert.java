@@ -175,4 +175,33 @@ public final class Assert {
 		return className + "<" + valueString + ">";
 	}
 
+	public static void assertThrows(Class<? extends Throwable> expectedThrowable, Executable executable) {
+		expectThrows(expectedThrowable, executable);
+	}
+
+	public static <T extends Throwable> T expectThrows(Class<T> expectedThrowable, Executable executable) {
+		try {
+			executable.execute();
+		}
+		catch (Throwable actualThrown) {
+			if (expectedThrowable.isInstance(actualThrown)) {
+				@SuppressWarnings("unchecked")
+				T retVal = (T) actualThrown;
+				return retVal;
+			}
+			else {
+				String mismatchMessage = format("unexpected exception type thrown;", expectedThrowable.getSimpleName(),
+					actualThrown.getClass().getSimpleName());
+				throw new AssertionError(mismatchMessage, actualThrown);
+			}
+		}
+		String message = String.format("expected %s to be thrown, but nothing was thrown",
+			expectedThrowable.getSimpleName());
+		throw new AssertionError(message);
+	}
+
+	public interface Executable {
+		void execute() throws Throwable;
+	}
+
 }
