@@ -12,6 +12,10 @@ targetCompatibility = 1.8
 ext.assertJVersion         = '3.2.0'
 ext.lombokVersion          = '1.16.4'
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     compile("org.projectlombok:lombok:${lombokVersion}")
     testCompile("org.assertj:assertj-core:${assertJVersion}")
