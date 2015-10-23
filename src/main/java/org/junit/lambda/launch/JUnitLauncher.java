@@ -1,6 +1,8 @@
 
 package org.junit.lambda.launch;
 
+import org.junit.lambda.core.TestDescriptorGenerator;
+
 import java.nio.file.Path;
 import java.util.Map;
 
@@ -35,6 +37,10 @@ public class JUnitLauncher {
 	}
 
 	public JUnitLauncher fileNames(String... fileNames) {
+		return this;
+	}
+
+	public JUnitLauncher generators(TestDescriptorGenerator... generators) {
 		return this;
 	}
 
