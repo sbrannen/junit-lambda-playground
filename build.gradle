@@ -2,34 +2,29 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 
 jar {
-    baseName = 'junit-lambda'
-    version = '1.0.0-SNAPSHOT'
+	baseName = 'junit-lambda'
+	version = '1.0.0-SNAPSHOT'
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-ext.assertJVersion         = '3.2.0'
-ext.lombokVersion          = '1.16.4'
+ext.assertJVersion = '3.3.0'
+ext.lombokVersion  = '1.16.8'
+ext.junitVersion   = '4.12'
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    compile("org.projectlombok:lombok:${lombokVersion}")
-    testCompile("org.assertj:assertj-core:${assertJVersion}")
-}
-
-eclipse {
-    classpath {
-         containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
-         containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
-    }
+	compile("org.projectlombok:lombok:${lombokVersion}")
+	testCompile("org.assertj:assertj-core:${assertJVersion}")
+	testCompile("junit:junit:${junitVersion}")
 }
 
 test {
-	description = 'Runs JUnit unit tests.'
+	description = 'Runs JUnit tests.'
 	useJUnit()
 
 	scanForTestClasses = false
@@ -41,5 +36,5 @@ test {
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '2.7'
+	gradleVersion = '2.12'
 }
